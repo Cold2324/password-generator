@@ -11,7 +11,6 @@ app.use(cors())
 app.get('/', (req, res) => {
   res.json({
     password: generatePassword(),
-    message: 'Password Generated',
   })
 })
 
