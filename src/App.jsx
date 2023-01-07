@@ -3,10 +3,18 @@ import Input from '@mui/material/Input'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 export default function App() {
   const [password, setPassword] = useState('')
   const [onCopy, setOnCopy] = useState(false)
+
+  useEffect(() => {
+    fetch('http://localhost:3000/')
+      .then((data) => data.json())
+      .then((data) => console.log(data))
+      .catch((e) => console.log(e))
+  }, [])
+
   return (
     <Container maxWidth="lg">
       <Box
