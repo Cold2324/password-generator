@@ -2,11 +2,7 @@ env:
   browser: true
   es2021: true
   node: true
-settings: {
-  react: {
-    version: 'detect'
-  }
-}
+settings: { react: { version: 'detect' } }
 extends:
   - plugin:react/recommended
   - standard
@@ -17,6 +13,4 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {
-  'react/react-in-jsx-scope': 'off'
-}
+rules: { 'react/react-in-jsx-scope': 'off' }

@@ -6,6 +6,7 @@ import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useState, useEffect } from 'react'
+import { URL } from './config'
 export default function App() {
   const [password, setPassword] = useState('')
   const [onCopy, setOnCopy] = useState(false)
@@ -16,7 +17,7 @@ export default function App() {
     setOnCopy(false)
 
     if (onGenPass) {
-      fetch('http://localhost:3000/')
+      fetch(`${URL}`)
         .then((data) => data.json())
         .then((data) => setPassword(data.password))
         .catch((e) => console.log(e))

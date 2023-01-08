@@ -3,7 +3,7 @@ import { generatePassword } from '@cityssm/simple-password-generator'
 import cors from 'cors'
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors())
@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
   })
 })
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log('server running')
 })

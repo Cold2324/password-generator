@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "back:dev": "nodemon ./backend/index.js",
+    "start:back": "node ./backend/index.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint --fix . --ext .js,.jsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "front:deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@cityssm/simple-password-generator": "2.1.2",
@@ -34,6 +36,7 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.11",
+    "gh-pages": "4.0.0",
     "nodemon": "2.0.20",
     "vite": "^4.0.0"
   }
