@@ -4,11 +4,13 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useState, useEffect } from 'react'
 import { URL } from './config'
 export default function App() {
   const [password, setPassword] = useState('')
+  const [onLoad, setOnLoad] = useState(false)
   const [onCopy, setOnCopy] = useState(false)
   const [onGenPass, setOnGenPass] = useState(false)
 
@@ -17,9 +19,13 @@ export default function App() {
     setOnCopy(false)
 
     if (onGenPass) {
+      setOnLoad(true)
       fetch(`${URL}`)
         .then((data) => data.json())
-        .then((data) => setPassword(data.password))
+        .then((data) => {
+          setPassword(data.password)
+          setOnLoad(false)
+        })
         .catch((e) => console.log(e))
     }
   }, [onGenPass])
@@ -83,9 +89,14 @@ export default function App() {
               </Button>
             </CopyToClipboard>
           </Box>
-          <Button variant="contained" color="primary" onClick={handleGenPass}>
-            Generate Your Password
-          </Button>
+          <LoadingButton
+            variant="contained"
+            color="primary"
+            onClick={handleGenPass}
+            loading={onLoad}
+          >
+            Generate Password
+          </LoadingButton>
         </Box>
       </Box>
     </Container>
