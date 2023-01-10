@@ -1,12 +1,11 @@
 import Container from '@mui/material/Container'
-import Input from '@mui/material/Input'
-import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
-import LoadingButton from '@mui/lab/LoadingButton'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useState, useEffect } from 'react'
 import { URL } from './config'
 import SnackAlert from './components/SnackAlert'
+import CopyButton from './components/CopyButton'
+import GenPassButton from './components/GenPassButton'
+import Password from './components/Password'
 export default function App() {
   const [password, setPassword] = useState('')
   const [onLoad, setOnLoad] = useState(false)
@@ -14,7 +13,7 @@ export default function App() {
   const [onGenPass, setOnGenPass] = useState(false)
 
   useEffect(() => {
-    setOnGenPass(false)
+    // setOnGenPass(false)
     setOnCopy(false)
 
     if (onGenPass) {
@@ -24,6 +23,7 @@ export default function App() {
         .then((data) => {
           setPassword(data.password)
           setOnLoad(false)
+          setOnGenPass(false)
         })
         .catch((e) => console.log(e))
     }
@@ -35,7 +35,7 @@ export default function App() {
 
   return (
     <Container maxWidth="lg">
-      {onCopy && <SnackAlert />}
+      {onCopy && <SnackAlert onCopy={onCopy} setOnCopy={setOnCopy} />}
       <Box
         sx={{
           height: '100vh',
@@ -57,27 +57,13 @@ export default function App() {
               display: 'flex',
               flexWrap: 'wrap',
               gap: '10px',
+              alignItems: 'center',
             }}
           >
-            <Input
-              placeholder="Click the button to generate your password"
-              id="password"
-              value={password}
-            />
-            <CopyToClipboard text={password} onCopy={() => setOnCopy(true)}>
-              <Button variant="outlined" color="primary">
-                Copy to Clipboard
-              </Button>
-            </CopyToClipboard>
+            <Password password={password} />
+            <CopyButton password={password} setOnCopy={setOnCopy} />
           </Box>
-          <LoadingButton
-            variant="contained"
-            color="primary"
-            onClick={handleGenPass}
-            loading={onLoad}
-          >
-            Generate Password
-          </LoadingButton>
+          <GenPassButton handleGenPass={handleGenPass} onLoad={onLoad} />
         </Box>
       </Box>
     </Container>
