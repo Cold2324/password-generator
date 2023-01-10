@@ -2,12 +2,11 @@ import Container from '@mui/material/Container'
 import Input from '@mui/material/Input'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
-import Alert from '@mui/material/Alert'
-import Snackbar from '@mui/material/Snackbar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useState, useEffect } from 'react'
 import { URL } from './config'
+import SnackAlert from './components/SnackAlert'
 export default function App() {
   const [password, setPassword] = useState('')
   const [onLoad, setOnLoad] = useState(false)
@@ -36,25 +35,7 @@ export default function App() {
 
   return (
     <Container maxWidth="lg">
-      {onCopy && (
-        <Snackbar
-          open={onCopy}
-          autoHideDuration={6000}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          onClose={() => setOnCopy(false)}
-        >
-          <Alert
-            severity="success"
-            sx={{ width: '100%' }}
-            onClose={() => setOnCopy(false)}
-          >
-            Copy to Clipboard
-          </Alert>
-        </Snackbar>
-      )}
+      {onCopy && <SnackAlert />}
       <Box
         sx={{
           height: '100vh',
