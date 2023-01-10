@@ -1,11 +1,13 @@
-import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
+import { Box, Container } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { URL } from './config'
-import SnackAlert from './components/SnackAlert'
-import CopyButton from './components/CopyButton'
-import GenPassButton from './components/GenPassButton'
-import Password from './components/Password'
+import {
+  CopyButton,
+  GenPassButton,
+  Password,
+  SnackAlert,
+} from './components/init'
+
 export default function App() {
   const [password, setPassword] = useState('')
   const [onLoad, setOnLoad] = useState(false)
